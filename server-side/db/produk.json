@@ -1,0 +1,20 @@
+[
+      {
+        "nama_produk": "Iphone XR",
+        "harga": 100000,
+        "kategori_id": 1,
+        "status_id": 1
+      },
+      {
+        "nama_produk": "Celana Uniqlo",
+        "harga": 150000,
+        "kategori_id": 2,
+        "status_id": 2
+      },
+      {
+        "nama_produk": "Kaos Uniqlo",
+        "harga": 80000,
+        "kategori_id": 2,
+        "status_id": 1
+      }
+]
