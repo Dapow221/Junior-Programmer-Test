@@ -1,8 +1,8 @@
 [
     {
-      "nama_status": "Bisa Dijual"
+      "nama_status": "bisa dijual"
     },
     {
-      "nama_status": "Tidak Tersedia"
+      "nama_status": "tidak bisa dijual"
     }
 ]

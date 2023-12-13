@@ -18,9 +18,14 @@ export default {
     computed: {
         ...mapState(useMainStore, ['dataEditProducts'])
     },
-    created() {
-        this.findProductsById(this.$route.params.id)
-    }
+    async beforeRouteEnter(to, from, next) {
+        const store = useMainStore();
+        await store.findProductsById(to.params.id);
+        next(vm => {
+            // view model
+            vm.dataEditProducts = store.dataEditProducts;
+        });
+    },
 }
 </script>
 

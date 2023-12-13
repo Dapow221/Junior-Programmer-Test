@@ -6,12 +6,12 @@ class Controller {
       const product = await Produk.findAll({
         include: [Kategori, Status],
         where: {
-          "$Status.nama_status$": "Bisa Dijual",
+          "$Status.nama_status$": "bisa dijual",
         },
       });
       res.status(200).json(product);
     } catch (error) {
-      console.log(error);
+      next(error);
     }
   }
   static async addProducts(req, res, next) {
@@ -25,7 +25,7 @@ class Controller {
       });
       res.status(201).json({ message: "Done add new product" });
     } catch (error) {
-      console.log(error);
+      next(error);
     }
   }
   static async editProducts(req, res, next) {
@@ -34,7 +34,7 @@ class Controller {
       const editProduct = await Produk.findByPk(id);
 
       if (!editProduct) {
-        throw { name: "Data not found" };
+        throw { name: "Data Not Found" };
       }
 
       const { nama_produk, harga, kategori_id, status_id } = req.body;
@@ -48,12 +48,16 @@ class Controller {
         { where: { id } }
       );
 
+      if (!editedProduct) {
+        throw { name: "Cannot Edit Product" };
+      }
+
       res.status(201).json({
         message: `Done edit product dari id ${id}`,
         editProduct,
       });
     } catch (error) {
-      console.log(error);
+      next(error);
     }
   }
 
@@ -68,7 +72,7 @@ class Controller {
         message: `Done delete product dari id ${id}`,
       });
     } catch (error) {
-      console.log(error);
+      next(error);
     }
   }
 
@@ -78,9 +82,13 @@ class Controller {
       const products = await Produk.findByPk(id, {
         include: [Kategori, Status],
       });
+
+      if (!products) {
+        throw { name: "Data Not Found" };
+      }
       res.status(200).json(products);
     } catch (error) {
-      console.log(error);
+      next(error);
     }
   }
 
@@ -89,7 +97,7 @@ class Controller {
       const kategori = await Kategori.findAll();
       res.status(200).json(kategori);
     } catch (error) {
-      console.log(error);
+      next(error);
     }
   }
 
@@ -98,7 +106,7 @@ class Controller {
       const status = await Status.findAll();
       res.status(200).json(status);
     } catch (error) {
-      console.log(error);
+      next(error);
     }
   }
 }
