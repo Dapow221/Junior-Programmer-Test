@@ -18,8 +18,30 @@ module.exports = (sequelize, DataTypes) => {
   }
   Produk.init(
     {
-      nama_produk: DataTypes.STRING,
-      harga: DataTypes.INTEGER,
+      nama_produk: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: "Inputan nama harus diisi",
+          },
+          notEmpty: {
+            msg: "Inputan nama harus diisi",
+          },
+        },
+      },
+      harga: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: "Harga harus diisi dan harus berupa angka",
+          },
+          notEmpty: {
+            msg: "Harga harus diisi dan harus berupa angka",
+          },
+        },
+      },
       kategori_id: DataTypes.INTEGER,
       status_id: DataTypes.INTEGER,
     },
