@@ -1,4 +1,3 @@
-## Junior Test Programmer
 
 ## How to run server-side
 - npm install
